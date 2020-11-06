@@ -125,22 +125,37 @@ function gameOver() {
   initials = localStorage.getItem('submit');
 
   submit.addEventListener("click", scores);
-  submit.addEventListener("click", save)
+  //submit.addEventListener("click", save)
 
 }
 
 function scores() {
   quizEl.innerHTML = " ";
+  choicesEl.innerHTML = " ";
   localStorage.setItem('score', JSON.stringify(score));
   var get = localStorage.getItem('score');
   console.log(score);
   console.log(initials);
   quizEl.innerHTML = initials, JSON.parse(initials);
   quizEl.innerHTML = get, JSON.parse(get);
+  var listEl = document.createElement("ul");
+  listEl.setAttribute("id", "choices");
+  quizEl.append(listEl);
+  var playAgain = document.createElement("button");
+  listEl.append(playAgain);
+  playAgain.setAttribute("id", "reset");
+  playAgain.innerText = "play again";
+  playAgain.addEventListener("click", reset);
+
 
 }
-function save() {
+
+function reset() {
+
+  location.href = 'https://marchandmr.github.io/Javascript-Quiz-HW4/';
 
 
 
 }
+
+
