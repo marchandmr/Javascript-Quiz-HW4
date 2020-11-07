@@ -1,13 +1,12 @@
 // VARIABLES -----------------------------------------------
-var timerEl = document.querySelector("#timer");
-var quizEl = document.querySelector("#quiz");
-var choicesEl = document.querySelector("#choices");
-var startEl = document.querySelector("#start");
-var scoreEl = document.querySelector("#score");
+var timerEl = document.querySelector("#timer"); // timer
+var quizEl = document.querySelector("#quiz");   // area in which questions will be wrote
+var choicesEl = document.querySelector("#choices"); // buttons to answer questions will be appended here
+var startEl = document.querySelector("#start"); // button to start quiz
+var scoreEl = document.querySelector("#score"); // keeps the score
 var score = 0;
 var questionCount = 0;
 var correct;
-//var gameOver = questions.length;
 var timeLeft = 60;
 var initals;
 
@@ -40,7 +39,7 @@ var questions = [
   },
 ]
 
-startEl.addEventListener("click", startTimer);
+startEl.addEventListener("click", startTimer); // when the startEl is clicked it will start timer which also runs the initialize function
 
 // FUNCTIONS -------------------------------------
 function startTimer() {
@@ -59,16 +58,16 @@ function startTimer() {
   initialize();
 }
 
-// Starts quiz and initializes timer
+
 function initialize() {
 
   if (questionCount === questions.length) {
     gameOver();
   }
   else {
-    // Writes questions and answers in the quiz element
-    var thisQuestion = questions[questionCount];
-    var forQuestion = questions[questionCount].question;
+
+    var thisQuestion = questions[questionCount]; // displays the current question
+    var forQuestion = questions[questionCount].question; //displays choices
     var ulChoices = document.createElement("ul");
     var choiceOneEl = document.createElement("button");
     var choiceTwoEl = document.createElement("button");
@@ -97,7 +96,7 @@ function initialize() {
   }
 }
 
-function compare(event) {
+function compare(event) { // function to check if the answer is right or wrong
 
 
   correct = questions[questionCount].answer;
@@ -119,8 +118,7 @@ function compare(event) {
     initialize();
   }
 }
-function gameOver() {
-  alert("All Done!")
+function gameOver() { //displays runs when the timer runs out or all questions are answered
   timeLeft = " ";
   quizEl.innerHTML = "";
   var initials = document.createElement("input");
@@ -132,15 +130,13 @@ function gameOver() {
   var gameOverText = document.createElement("p")
   quizEl.append(gameOverText);
   gameOverText.textContent = "Enter your initals and press submit to save your score";
-  // localStorage.setItem('submit', JSON.stringify(submit));
-  // initials = localStorage.getItem('submit');
 
   submit.addEventListener("click", saveInit);
-  //submit.addEventListener("click", save)
+
 
 }
 
-function saveInit() {
+function saveInit() { // saves initials in local storage
   var x = document.getElementById("initials").value;
   localStorage.setItem("initials", JSON.stringify(x))
   console.log(x);
@@ -149,13 +145,12 @@ function saveInit() {
 
 
 
-function scores() {
+function scores() { // saves scores in local storage and displays score and initals
   quizEl.innerHTML = " ";
   choicesEl.innerHTML = " ";
   localStorage.setItem('score', JSON.stringify(score));
   var get = localStorage.getItem('score');
   var getInit = localStorage.getItem('initials');
-  // quizEl.innerHTML = initials, JSON.parse(initials);
   quizEl.innerHTML = JSON.parse(getInit) + " : " + get, JSON.parse(get);
   var listEl = document.createElement("ul");
   listEl.setAttribute("id", "choices");
