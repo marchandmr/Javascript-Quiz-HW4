@@ -4,4 +4,5 @@ I was tasked with creating a JavaScript quiz that would, increment the score whe
 
 Link to Quiz: https://marchandmr.github.io/Javascript-Quiz-HW4/
 
+![](Assets/screenshot.png)
 
