@@ -63,8 +63,6 @@ button {
       
       margin-top: 30px;
 
-
-      
   }
 
   #quiz{
@@ -74,14 +72,9 @@ button {
     color: #bf4aa8;
     
 }
-#optionButtons{
-    background-color: #d9d9d9;
-    color: #bf4aa8;
-    border: 2px solid #bf4aa8 ;
-    
-}
 
-#reset{
-    margin-bottom: 20px;
-    text-align: right;
+#reset
+{
+    margin-top: 50px;
+   
 }

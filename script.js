@@ -122,13 +122,13 @@ function gameOver() { //displays runs when the timer runs out or all questions a
   timeLeft = " ";
   quizEl.innerHTML = "";
   var initials = document.createElement("input");
-  initials.setAttribute("id", "initials")
-  quizEl.append(initials);
   var submit = document.createElement("button");
-  quizEl.append(submit);
-  submit.textContent = "SUBMIT";
   var gameOverText = document.createElement("p")
+  quizEl.append(initials);
+  quizEl.append(submit);
   quizEl.append(gameOverText);
+  initials.setAttribute("id", "initials")
+  submit.textContent = "SUBMIT";
   gameOverText.textContent = "Enter your initals and press submit to save your score";
 
   submit.addEventListener("click", saveInit);
@@ -139,6 +139,7 @@ function gameOver() { //displays runs when the timer runs out or all questions a
 function saveInit() { // saves initials in local storage
   var x = document.getElementById("initials").value;
   localStorage.setItem("initials", JSON.stringify(x))
+  localStorage.setItem('score', JSON.stringify(score));
   console.log(x);
   scores();
 }
@@ -148,14 +149,12 @@ function saveInit() { // saves initials in local storage
 function scores() { // saves scores in local storage and displays score and initals
   quizEl.innerHTML = " ";
   choicesEl.innerHTML = " ";
-  localStorage.setItem('score', JSON.stringify(score));
   var get = localStorage.getItem('score');
   var getInit = localStorage.getItem('initials');
-  quizEl.innerHTML = JSON.parse(getInit) + " : " + get, JSON.parse(get);
   var listEl = document.createElement("ul");
-  listEl.setAttribute("id", "choices");
-  quizEl.append(listEl);
   var playAgain = document.createElement("button");
+  quizEl.innerHTML = JSON.parse(getInit) + " : " + get, JSON.parse(get);
+  quizEl.append(listEl);
   listEl.append(playAgain);
   playAgain.setAttribute("id", "reset");
   playAgain.innerText = "play again";
